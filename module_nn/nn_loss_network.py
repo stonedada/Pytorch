@@ -22,8 +22,8 @@ class Mymodule(nn.Module):
             Conv2d(32,64,5,2),
             MaxPool2d(2),
             Flatten(),
-            Linear(64,64),
-            Linear(64,10)
+            #Linear(64,64),
+            Linear(32,10)
         )
 
     def forward(self,x):

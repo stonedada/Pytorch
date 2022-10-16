@@ -17,8 +17,8 @@ result=loss(input,target)
 
 print(result)
 
-x=torch.tensor([[0.1,0.2,0.3]])
-y=torch.tensor([1])
+x=torch.tensor([[0.1,0.2,0.3],[0.4,0.5,0.6]])
+y=torch.tensor([1,2])
 loss_cross=nn.CrossEntropyLoss()
 result_loss=loss_cross(x,y)
 print(result_loss)
