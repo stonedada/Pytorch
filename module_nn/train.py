@@ -42,7 +42,6 @@ train_step=0
 test_step=0
 
 #损失函数
-#cross_loss=nn.CrossEntropyLoss()
 #cross_loss=cross_loss.cuda()
 cross_loss=nn.CrossEntropyLoss()
 cross_loss.to(device)

@@ -15,8 +15,9 @@ v = ViT(
     dropout = 0.1,
     emb_dropout = 0.1
 )
-
+v.cuda()
 img = torch.randn(1, 3, 256, 256)
+img=img.cuda()
 
 preds = v(img) # (1, 1000)
 
