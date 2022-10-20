@@ -47,8 +47,6 @@ import os.path
 import re
 import time
 
-import numpy as np
-from keras import datasets
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
 from load_local_cifar10 import  *
