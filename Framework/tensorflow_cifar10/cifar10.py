@@ -44,9 +44,9 @@ import sys
 import tarfile
 
 from six.moves import urllib
-import tensorflow as tf
-
-#from tensorflow.models.image.cifar10 import cifar10_input
+#import tensorflow._api.v2.compat.v1 as tf
+import  tensorflow as  tf
+#from tensorflow.models.image.tensorflow_cifar10 import cifar10_input
 import cifar10_input
 
 FLAGS = tf.app.flags.FLAGS
@@ -54,7 +54,9 @@ FLAGS = tf.app.flags.FLAGS
 # Basic model parameters.
 tf.app.flags.DEFINE_integer('batch_size', 128,
                             """Number of images to process in a batch.""")
-tf.app.flags.DEFINE_string('data_dir', '/tmp/cifar10_data',
+# tf.app.flags.DEFINE_string('data_dir', '/tmp/cifar10_data',
+#                            """Path to the CIFAR-10 data directory.""")
+tf.app.flags.DEFINE_string('data_dir', '../../cifar10_data',
                            """Path to the CIFAR-10 data directory.""")
 
 # Global constants describing the CIFAR-10 data set.
@@ -92,8 +94,8 @@ def _activation_summary(x):
   # Remove 'tower_[0-9]/' from the name in case this is a multi-GPU training
   # session. This helps the clarity of presentation on tensorboard.
   tensor_name = re.sub('%s_[0-9]*/' % TOWER_NAME, '', x.op.name)
-  tf.histogram_summary(tensor_name + '/activations', x)
-  tf.scalar_summary(tensor_name + '/sparsity', tf.nn.zero_fraction(x))
+  tf.summary.histogram(tensor_name + '/activations', x)
+  tf.summary.scalar(tensor_name + '/sparsity', tf.nn.zero_fraction(x))
 
 
 def _variable_on_cpu(name, shape, initializer):
@@ -131,7 +133,7 @@ def _variable_with_weight_decay(name, shape, stddev, wd):
   var = _variable_on_cpu(name, shape,
                          tf.truncated_normal_initializer(stddev=stddev))
   if wd:
-    weight_decay = tf.mul(tf.nn.l2_loss(var), wd, name='weight_loss')
+    weight_decay = tf.multiply(tf.nn.l2_loss(var), wd, name='weight_loss')
     tf.add_to_collection('losses', weight_decay)
   return var
 
@@ -272,6 +274,7 @@ def loss(logits, labels):
   cross_entropy = tf.nn.sparse_softmax_cross_entropy_with_logits(
       logits, labels, name='cross_entropy_per_example')
   cross_entropy_mean = tf.reduce_mean(cross_entropy, name='cross_entropy')
+  # cross_entropy_mean = tf.reduce_sum(cross_entropy, name='cross_entropy')
   tf.add_to_collection('losses', cross_entropy_mean)
 
   # The total loss is defined as the cross entropy loss plus all of the weight

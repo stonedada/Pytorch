@@ -48,14 +48,17 @@ import re
 import time
 
 from six.moves import xrange  # pylint: disable=redefined-builtin
+# import tensorflow._api.v2.compat.v1 as tf                                         # for tenstorflow 2.*
+# tf.disable_v2_behavior()
+
 import tensorflow as tf
+
 from load_local_cifar10 import  *
-#from tensorflow.models.image.cifar10 import cifar10
+#from tensorflow.models.image.tensorflow_cifar10 import tensorflow_cifar10
 import cifar10
 
 # cifar10_dir=r'D:\Data\CodePractice\PyTorch\dataset\cifar-10-batches-py'
-#
-# cifar10=load_data(cifar10_dir)
+# tensorflow_cifar10=load_data(cifar10_dir)
 
 FLAGS = tf.app.flags.FLAGS
 
