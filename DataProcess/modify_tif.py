@@ -13,7 +13,8 @@ def merge_path(root,base):
     return  path
 
 def read_tif(img_path,flag=cv2.IMREAD_ANYDEPTH):
-    img=cv2.imread(img_path,flag)
+    img=cv2.imread(img_path,-1)
+    print("tif :",img.shape)
     return  img
 
 def context(imgs_dir,files):
@@ -21,7 +22,7 @@ def context(imgs_dir,files):
     img1 = read_tif(img_path_1)
     img_path_2 = merge_path(imgs_dir, files[1])
     img2 = read_tif(img_path_2)
-    #print(img1,type(img1))
+    # print(img1,type(img1))
     imgs=np.rint((img1+img2)/2)
 
     return imgs
@@ -46,4 +47,5 @@ def run(dir, flag=0):
 
 if __name__ == '__main__':
 
-    run(dir)
+    a=run(dir)
+    print(a)
