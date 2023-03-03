@@ -27,7 +27,7 @@ def compute(csv_path: str):
     mat_channel2 = np.zeros((2048, 2048), dtype=np.uint16)
 
     df = pd.read_csv(csv_path)
-    dir_name = df[ ["dir_name"] ]
+    dir_name = df[ ["dir _name"] ]
     names = dir_name.to_numpy()
     # squeeze(720, 1) -> (720, )
     names = names.squeeze(axis=1)
