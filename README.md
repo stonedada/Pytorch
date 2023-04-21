@@ -1,2 +1,2 @@
 # Pytorch
-record personal how to learn use pytorch
+Record personally  have written some code about pytorch

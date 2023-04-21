@@ -1,4 +1,5 @@
 /dataset/
 /logs/
+/Crop/input
+/Crop/output
 
-/cifar10_data/
