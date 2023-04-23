@@ -44,7 +44,7 @@ block_width, block_height = block_size
 rows = original_height // block_height
 cols = original_width // block_width
 # 创建一个空白的画布，用于组合块
-canvas = np.zeros((3, original_height, original_width), dtype=np.float16)
+canvas = np.zeros((3, original_height, original_width), dtype=np.float32)
 for i in range(1, 65):  # 假设有64个块
     block_path = f"./image/c001_{i}_image.tif"  # 替换为您的块路径
     block = tifffile.imread(block_path)

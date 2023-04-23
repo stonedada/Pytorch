@@ -36,10 +36,12 @@ if __name__ == '__main__':
     # image = cv2.imread(image_path)
 
     # load npy file
-    c001 = np.load('./input/t000 p003 z012 c001.npy').transpose(2, 1, 0)
+    c001 = np.load('./input/t000 p003 z012 c001.npy').transpose(2, 1, 0).astype(dtype=np.float32)
     print('c001 :', c001.shape)
-    c000 = np.load('./input/t000 p003 z012 c000.npy').transpose(2, 1, 0)
+    tifffile.imwrite("c001.tif", c001)
+    c000 = np.load('./input/t000 p003 z012 c000.npy').transpose(2, 1, 0).astype(dtype=np.float32)
     print('c000 :', c000.shape)
+    tifffile.imwrite("c000.tif", c000)
     # 定义块的大小，这里以100x100像素为例
     block_size = (256, 256)
     # 调用划分函数
