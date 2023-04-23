@@ -1,5 +1,10 @@
 /dataset/
 /logs/
 /Crop/input
+/Crop/image
+/Crop/label
 /Crop/output
-
+/Crop_2/input
+/Crop_2/output
+/Crop_2/image
+/Crop_2/label
