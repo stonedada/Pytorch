@@ -24,7 +24,7 @@ def split_image(image, block_size):
             print('block :', block.shape)
             blocks.append(block)
             # tifffile.imwrite(f"./label/c001_{i}_image.tif", block)
-            np.save(f'./output/npy_128/c000_{i}.npy', block)
+            np.save(f'./output/npy_512/c000_{i}_p003_z010.npy', block)
             i += 1
     return blocks
 
@@ -40,11 +40,7 @@ if __name__ == '__main__':
     c000 = np.load('./input/tile image t000 p003 z010 c000.npy').transpose(2, 1, 0).astype(dtype=np.float32)
     print('c000 :', c000.shape)
     # 定义块的大小，这里以100x100像素为例
-    block_size = (128, 128)
+    block_size = (512, 512)
     # 调用划分函数
     blocks = split_image(c000, block_size)
 
-    # 保存划分后的块
-    # for i, block in enumerate(blocks):
-    #     # cv2.imwrite(f"block_{i + 1}.jpg", block)
-    #     np.save(f'./output/c000_{i + 1}.npy', block)
