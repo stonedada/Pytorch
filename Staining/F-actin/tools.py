@@ -51,7 +51,8 @@ def save_predicted_images(input_imgs,
         os.makedirs(output_dir, exist_ok=True)
 
     n_rows = 2
-    n_cols = np.shape(input_imgs)[0] + 1
+    # n_cols = np.shape(input_imgs)[0] + 1
+    n_cols = 2
     fig, ax = plt.subplots(n_rows, n_cols, squeeze=False)
     ax = ax.flatten()
     for axs in ax:
@@ -65,11 +66,16 @@ def save_predicted_images(input_imgs,
             clip_limits,
             100 - clip_limits,
         )
-    for cur_im in input_imgs:
-        ax[axis_count].imshow(cur_im, cmap='gray')
-        ax[axis_count].axis('off')
-        ax[axis_count].set_title('Input', fontsize=font_size)
-        axis_count += 1
+    # for cur_im in input_imgs:
+    #     ax[axis_count].imshow(cur_im, cmap='gray')
+    #     ax[axis_count].axis('off')
+    #     ax[axis_count].set_title('Input', fontsize=font_size)
+    #     axis_count += 1
+    cur_im = input_imgs[1]
+    ax[axis_count].imshow(cur_im, cmap='gray')
+    ax[axis_count].axis('off')
+    ax[axis_count].set_title('Input', fontsize=font_size)
+    axis_count += 1
 
     # add target image to plot
     cur_target_chan = hist_clipping(
