@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-a = np.load("UTransform_train_loss_nuclei.npy", allow_pickle=True)
+a = np.load("UTransform_train_loss_nuclei(1).npy", allow_pickle=True)
 record = a.tolist()
 b = np.load('ResUNet_train_loss_nuclei.npy', allow_pickle=True)
 record_1 = b.tolist()
@@ -22,7 +22,7 @@ plt.title('train_loss')
 plt.xlabel('Epoch')
 plt.ylabel('MAELoss')
 
-dest = './train_loss_nuclei_v3.png'
+dest = './train_loss_nuclei_v4.png'
 plt.savefig(dest)
 
 plt.show()
