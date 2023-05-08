@@ -1,38 +1,72 @@
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
+# F-actin Data
+ResUNet_f = pd.read_csv('../data/F-actin/ResUNet.csv')
+TransFuse_f = pd.read_csv('../data/F-actin/TransFuse.csv')
+TransUNet_f = pd.read_csv('../data/F-actin/TransUNet.csv')
+UTransform_f = pd.read_csv('../data/F-actin/TransUNet.csv')
+ssim_ResUNet_f = ResUNet_f['SSIM']
+ssim_TransFuse_f = TransFuse_f['SSIM']
+ssim_TransUNet_f = TransUNet_f['SSIM']
+ssim_UTransform_f = UTransform_f['SSIM']
+# nuclei Data
+ResUNet_n = pd.read_csv('../data/nuclei/ResUNet.csv')
+TransFuse_n = pd.read_csv('../data/nuclei/TransFuse.csv')
+TransUNet_n = pd.read_csv('../data/nuclei/TransUNet.csv')
+UTransform_n = pd.read_csv('../data/nuclei/TransUNet.csv')
+ssim_ResUNet_n = ResUNet_n['SSIM']
+ssim_TransFuse_n = TransFuse_n['SSIM']
+ssim_TransUNet_n = TransUNet_n['SSIM']
+ssim_UTransform_n = UTransform_n['SSIM']
+
+# Define my data
 all_data = [np.random.normal(0, std, 100) for std in range(1, 4)]
-# print(all_data)
-font_size = 15
-# ----------多个子图-----------
-figure, axes = plt.subplots(1, 3)  # 得到画板、轴
-axes = axes.flatten()
-figure.set_size_inches(15, 6)
-a = axes[0].boxplot(all_data, patch_artist=True, )  # 描点上色
-axes[0].set_title('F-actin', fontsize=font_size)
-b = axes[1].boxplot(all_data, patch_artist=True, )  # 描点上色
-axes[1].set_title('Nuclei', fontsize=font_size)
-c = axes[2].boxplot(all_data, patch_artist=True, )  # 描点上色
+ssim_factin = [ssim_ResUNet_f, ssim_TransFuse_f, ssim_TransUNet_f, ssim_UTransform_f]
+ssim_nuclei = [ssim_ResUNet_n, ssim_TransFuse_n, ssim_TransUNet_n, ssim_UTransform_n]
 
-# 颜色填充
-colors = ['pink', 'lightblue', 'lightgreen']
-for bplot in (a, b, c):
-    for patch, color in zip(bplot['boxes'], colors):
-        patch.set_facecolor(color)
-# 加水平网格线
-for ax in axes:
-    ax.yaxis.grid(True)  # 在y轴上添加网格线
-    ax.xaxis.grid(True)  # 在x轴上添加网格线
-    ax.set_xticks([y + 1 for y in range(len(all_data))])  # 指定x轴的轴刻度个数
-    ax.set_xlabel('Model')  # 设置x轴名称
-    ax.set_ylabel('Dice')  # 设置y轴名称
-
-plt.setp(axes, xticks=[1, 2, 3], xticklabels=['TransUNet', 'TransFuse', 'UTransform'])
-
+# ResUNet_ssim = [ssim_ResUNet_f, ssim_ResUNet_n]
 # ----------单个图-----------
-# plt.figure(figsize=(10,5))
-# plt.title('accuracy')
-# plt.boxplot(all_data, labels=['haha','sas','hh'],patch_artist=True)
-# plt.xlabel('model')
-# plt.ylabel('Dice')
+plt.figure(figsize=(12, 6))
+font_size = 15
+x1 = np.array([1, 9, 17, 25]) + 3.
+x2 = x1 + 1.1
+plt.title('boxplot', fontsize=font_size)
+labels = ['ResUNet', 'TransFuse', 'TransUNet', 'UTransform']
+a = plt.boxplot(ssim_factin, positions=x1, patch_artist=True, showmeans=True,
+                boxprops={"facecolor": "lightgreen",
+                          "edgecolor": "grey",
+                          "linewidth": 0.5},
+                medianprops={"color": "k", "linewidth": 0.0},
+                meanprops={'marker': '+',
+                           'markerfacecolor': 'k',
+                           'markeredgecolor': 'k',
+                           'markersize': 5}
+                )
+b = plt.boxplot(ssim_nuclei, positions=x2, patch_artist=True, showmeans=True,
+                boxprops={"facecolor": "lightblue",
+                          "edgecolor": "grey",
+                          "linewidth": 0.5},
+
+                meanprops={'marker': '+',
+                           'markerfacecolor': 'k',
+                           'markeredgecolor': 'k',
+                           'markersize': 5}
+                )
+
+plt.xticks(x1 + 0.5, labels, fontsize=12)
+plt.xlim(0, 35)
+plt.ylim(0, 1)
+
+plt.grid(axis='y', ls='--', alpha=1)
+plt.grid(True)
+plt.xlabel('Model', fontsize=font_size)
+plt.ylabel('SSIM', fontsize=14)
+
+# 给箱体添加图例，每类箱线图中取第一个颜色块用于代表图例
+plt.legend(handles=[a['boxes'][0], b['boxes'][0]],
+           labels=["Nuclei", "F-actin"], fontsize=15)
+plt.tight_layout()
+plt.savefig('./ssim_boxplot')
 plt.show()  # 展示

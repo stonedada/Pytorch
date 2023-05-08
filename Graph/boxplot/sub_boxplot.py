@@ -25,12 +25,12 @@ f_actin_data = [ssim_ResUNet_f, ssim_TransUNet_f, ssim_TransFuse_f, ssim_UTransf
 nuclei_data = [ssim_ResUNet_n, ssim_TransUNet_n, ssim_TransFuse_n, ssim_UTransform_n]
 font_size = 15
 # ----------多个子图-----------
-figure, axes = plt.subplots(1, 2)  # 得到画板、轴
+figure, axes = plt.subplots(1, 2, figsize=(15, 6))  # 得到画板、轴
 axes = axes.flatten()
-figure.set_size_inches(15, 6)
-a = axes[0].boxplot(f_actin_data, patch_artist=True, )  # 描点上色
+# figure.set_size_inches(15, 6)
+a = axes[0].boxplot(f_actin_data, patch_artist=True, showfliers=True)  # 描点上色
 axes[0].set_title('F-actin', fontsize=font_size)
-b = axes[1].boxplot(nuclei_data, patch_artist=True, )  # 描点上色
+b = axes[1].boxplot(nuclei_data, patch_artist=True, showfliers=True)  # 描点上色
 axes[1].set_title('Nuclei', fontsize=font_size)
 
 # 颜色填充
@@ -47,5 +47,5 @@ for ax in axes:
     ax.set_ylabel('SSIM')  # 设置y轴名称
 
 plt.setp(axes, xticks=[1, 2, 3, 4], xticklabels=['ResUNet', 'TransFuse', 'TransUNet', 'UTransform'])
-plt.savefig('./ssim.png')
+plt.savefig('./ssim_unusual.png')
 plt.show()  # 展示
