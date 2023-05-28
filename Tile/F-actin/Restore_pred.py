@@ -22,7 +22,7 @@ if __name__ == '__main__':
     canvas = np.zeros((1, original_height, original_width), dtype=np.float32)
     for i in range(1, 65):  # 假设有17个块
         block_path = f"./{model_name}/pred_p003/c001_{i}_p003_z012_pred.tif"  # 替换为您的块路径
-        # block_path = f'./UTransform/pred/c001_{i}_p147_z006_pred.tif'
+        # block_path = f'./UTransform/pred_p003/c001_{i}_p147_z006_pred.tif'
         block = tifffile.imread(block_path)
         # 缩放到512 or 256
         # block = zoom(block, (1, 4, 4), order=3)

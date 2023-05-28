@@ -19,10 +19,9 @@ plt.plot(np.arange(1, n_epochs + 1), record_2, label='ResUNet')
 
 plt.legend()
 
-plt.title('train_loss')
-plt.xlabel('Epoch')
-plt.ylabel('MAELoss')
-
+plt.title('Loss Model')
+plt.xlabel('Epochs')
+plt.ylabel('Loss for Each Epoch')
 dest = './train_loss_v3.png'
 plt.savefig(dest)
 
