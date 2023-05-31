@@ -24,7 +24,7 @@ def split_image(image, block_size):
             block = image[:, y:y + block_height, x:x + block_width]
             print('block :', block.shape)
             blocks.append(block)
-            np.save(f'./output/npy_256/p003/c002_{i}_p003_z012.npy', block)
+            np.save(f'./output/npy_512/p012/c000_{i}_p012_z012.npy', block)
             i += 1
     return blocks
 
@@ -32,12 +32,12 @@ def split_image(image, block_size):
 if __name__ == '__main__':
 
     # load nuclei npy file   c000 as label   c002 as image
-    c002 = np.load('./input/t000 p003 z012 c002.npy').transpose(2, 1, 0).astype(dtype=np.float32)
-    print('c001 :', c002.shape)
+    c002 = np.load('./input/t000 p012 z012 c002.npy').transpose(2, 1, 0).astype(dtype=np.float32)
+    print('c002 :', c002.shape)
     c000 = np.load('./input/t000 p012 z012 c000.npy').transpose(2, 1, 0).astype(dtype=np.float32)
     print('c000 :', c000.shape)
     # 定义块的大小，这里以100x100像素为例
-    block_size = (256, 256)
+    block_size = (512, 512)
     # 调用划分函数
-    blocks = split_image(c002, block_size)
+    blocks = split_image(c000, block_size)
 

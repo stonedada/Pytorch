@@ -1,6 +1,7 @@
 import cv2
 import glob
 import matplotlib
+
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import natsort
@@ -8,6 +9,8 @@ import numpy as np
 import os
 import sys
 from mpl_toolkits.axes_grid1 import make_axes_locatable
+
+
 def hist_clipping(input_image, min_percentile=2, max_percentile=98):
     """Clips and rescales histogram from min to max intensity percentiles
 
@@ -23,6 +26,8 @@ def hist_clipping(input_image, min_percentile=2, max_percentile=98):
     pmin, pmax = np.percentile(input_image, (min_percentile, max_percentile))
     hist_clipped_image = np.clip(input_image, pmin, pmax)
     return hist_clipped_image
+
+
 def save_predicted_images(input_imgs,
                           target_img,
                           pred_img,
@@ -112,15 +117,15 @@ def save_predicted_images(input_imgs,
     # add metrics
     if metric is not None:
         for c, (metric_name, value) in enumerate(zip(list(metric.keys()), metric.values[0][0:-1]), 1):
-            plt.figtext(0.5, 0.001+c*0.015, metric_name + ": {:.4f}".format(value), ha="center", fontsize=12)
+            plt.figtext(0.5, 0.001 + c * 0.015, metric_name + ": {:.4f}".format(value), ha="center", fontsize=12)
 
     fname = os.path.join(output_dir, '{}.{}'.format(output_fname, ext))
     fig.savefig(fname, dpi=300, bbox_inches='tight')
     plt.close(fig)
     fname = os.path.join(output_dir, '{}_overlay.{}'.format(output_fname, ext))
     cv2.imwrite(fname, cur_target_pred)
-
-
+    fname = os.path.join(output_dir, '{}_prediction.{}'.format(output_fname, ext))
+    save_subfig(fig, ax[2], fname)
 
 def convert_to_8bit(img):
     """
@@ -134,3 +139,10 @@ def convert_to_8bit(img):
         alpha=255 / (np.max(img) - np.min(img) + sys.float_info.epsilon),
     )
     return img_8bit
+
+
+# 用于单独保存子图的函数
+def save_subfig(fig, ax, save_path):
+    bbox = ax.get_tightbbox(fig.canvas.get_renderer()).expanded(1.02, 1.02)
+    extent = bbox.transformed(fig.dpi_scale_trans.inverted())
+    fig.savefig(save_path, bbox_inches=extent)

@@ -7,10 +7,11 @@ sys.path.append(os.path.join(os.path.dirname(__file__), '../../'))
 
 if __name__ == '__main__':
     # model_name = 'ResUNet'
-    # model_name = 'UTransform'
-    model_name = 'STNet'
-    input_imgs = tifffile.imread(f'./{model_name}/p003_z012_image_{model_name}.tif')
-    target_img = tifffile.imread(f'./{model_name}/p003_z012_label_{model_name}.tif').squeeze()
+    # model_name = 'UTransformer'
+    # model_name = 'STNet'
+    model_name = 'TransUNet'
+    input_imgs = tifffile.imread(f'./STNet/p003_z012_image_STNet.tif')
+    target_img = tifffile.imread(f'./STNet/p003_z012_label_STNet.tif').squeeze()
     pre_path = f'./{model_name}/p003_z012_pred_{model_name}.tif'
     pre_img = tifffile.imread(pre_path).squeeze()
     output_dir = f'./{model_name}/out_put'

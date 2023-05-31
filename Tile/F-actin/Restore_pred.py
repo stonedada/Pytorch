@@ -6,7 +6,8 @@ from scipy.ndimage import zoom
 if __name__ == '__main__':
 
     # model_name = 'ResUNet'
-    model_name = 'UTransform'
+    # model_name = 'UTransform'
+    model_name = 'STNet'
 
     # 定义块的大小，这里以100x100像素为例
     block_size = (256, 256)
@@ -20,9 +21,9 @@ if __name__ == '__main__':
     # 创建一个空白的画布，用于组合块
     # canvas = np.zeros((1, original_height, original_width), dtype=np.float32)
     canvas = np.zeros((1, original_height, original_width), dtype=np.float32)
-    for i in range(1, 65):  # 假设有17个块
+    for i in range(1, 65):  # 假设有64个块
         block_path = f"./{model_name}/pred_p003/c001_{i}_p003_z012_pred.tif"  # 替换为您的块路径
-        # block_path = f'./UTransform/pred_p003/c001_{i}_p147_z006_pred.tif'
+        # block_path = f'./UTransform/pred_p003_nopretrained/c001_{i}_p147_z006_pred.tif'
         block = tifffile.imread(block_path)
         # 缩放到512 or 256
         # block = zoom(block, (1, 4, 4), order=3)
@@ -32,8 +33,7 @@ if __name__ == '__main__':
         col = (i - 1) % cols
         y = row * block_height
         x = col * block_width
-        # canvas[:, y:y + block_height, x:x + block_width] = block
         canvas[:, y:y + block_height, x:x + block_width] = block
 
     # 保存组合后的原图像
-    tifffile.imwrite(f"./{model_name}/p003_z012_pred_UTransform.tif", canvas)
+    tifffile.imwrite(f"./{model_name}/p003_z012_pred_{model_name}.tif", canvas)
