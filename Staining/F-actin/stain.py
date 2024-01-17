@@ -13,7 +13,7 @@ if __name__ == '__main__':
     target_img = tifffile.imread(f'./UTransform/p003_z012_label.tif').squeeze().transpose(1, 0)
     pre_path = f'./{model_name}/p003_z012_pred_{model_name}.tif'
     pre_img = tifffile.imread(pre_path).squeeze()  # .transpose(1, 0)
-    output_dir = f'./{model_name}/out_put'
+    output_dir = f'./{model_name}/out_put2'
     output_fname = f'p003_z012_{model_name}'
 
     # metrics_df = pandas.read_csv('./metrics_xy.csv')

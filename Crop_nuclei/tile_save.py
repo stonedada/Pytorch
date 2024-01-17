@@ -30,7 +30,6 @@ def split_image(image, block_size):
 
 
 if __name__ == '__main__':
-
     # load nuclei npy file   c000 as label   c002 as image
     c002 = np.load('./input/t000 p012 z012 c002.npy').transpose(2, 1, 0).astype(dtype=np.float32)
     print('c002 :', c002.shape)
@@ -39,5 +38,9 @@ if __name__ == '__main__':
     # 定义块的大小，这里以100x100像素为例
     block_size = (512, 512)
     # 调用划分函数
-    blocks = split_image(c000, block_size)
-
+    # blocks = split_image(c000, block_size)
+    # 输出为tif格式
+    image = np.load('./input/t000 p012 z012 c002.npy').transpose(2, 0, 1).astype(dtype=np.float16)
+    tifffile.imwrite('t000 p012 z012 c002.tif', image)
+    label = np.load('./input/t000 p012 z012 c000.npy').transpose(2, 0, 1).astype(dtype=np.float16)
+    tifffile.imwrite('t000 p012 z012 c000.tif', label)

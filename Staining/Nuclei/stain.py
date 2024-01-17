@@ -9,7 +9,9 @@ if __name__ == '__main__':
     # model_name = 'ResUNet'
     # model_name = 'UTransformer'
     # model_name = 'STNet'
-    model_name = 'TransUNet'
+    # model_name = 'TransUNet'
+    # model_name = 'ResUNet'
+    model_name = 'TransFuse'
     input_imgs = tifffile.imread(f'./STNet/p003_z012_image_STNet.tif')
     target_img = tifffile.imread(f'./STNet/p003_z012_label_STNet.tif').squeeze()
     pre_path = f'./{model_name}/p003_z012_pred_{model_name}.tif'

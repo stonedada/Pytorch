@@ -124,9 +124,9 @@ def save_predicted_images(input_imgs,
     plt.close(fig)
     fname = os.path.join(output_dir, '{}_overlay.{}'.format(output_fname, ext))
     cv2.imwrite(fname, cur_target_pred)
-    fname = os.path.join(output_dir, '{}_prediction.{}'.format(output_fname, ext))
-    save_subfig(fig, ax[2], fname)
-
+    pname = os.path.join(output_dir, '{}_prediction.{}'.format(output_fname, ext))
+    # save_subfig(fig, ax[2], pname)
+    cv2.imwrite(pname, cur_prediction_8bit)
 
 def convert_to_8bit(img):
     """

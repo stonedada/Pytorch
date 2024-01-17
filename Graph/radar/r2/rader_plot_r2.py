@@ -34,7 +34,7 @@ params = {
     'figure.figsize': [6, 6],
     'axes.labelsize': 14,
     'axes.titlesize': 16,
-    'xtick.labelsize': 8,
+    'xtick.labelsize': 14,
     'ytick.labelsize': 10,
     'font.weight': 'bold'
 }

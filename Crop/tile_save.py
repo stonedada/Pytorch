@@ -31,10 +31,12 @@ def split_image(image, block_size):
 
 if __name__ == '__main__':
     # load npy file                                       # before (2,1,0)
-    # c001 = np.load('./input/t000 p003 z012 c001.npy').transpose(2, 0, 1).astype(dtype=np.float32)
-    # print('c001 :', c001.shape)
-    # c000 = np.load('./input/t000 p003 z012 c000.npy').transpose(2, 0, 1).astype(dtype=np.float32)
-    # print('c000 :', c000.shape)
+    c001 = np.load('./input/t000 p003 z012 c001.npy').transpose(2, 0, 1).astype(dtype=np.float16)
+    print('c001 :', c001.shape)
+    c000 = np.load('./input/t000 p003 z012 c000.npy').transpose(2, 0, 1).astype(dtype=np.float16)
+    print('c000 :', c000.shape)
+    tifffile.imwrite('t000 p003 z012 c001.tif', c001)
+    tifffile.imwrite('t000 p003 z012 c000.tif', c000)
     c001 = np.load('./input/t000 p147 z006 c001.npy').transpose(2, 0, 1).astype(dtype=np.float32)
     print('c001 :', c001.shape)
     c000 = np.load('./input/t000 p147 z006 c000.npy').transpose(2, 0, 1).astype(dtype=np.float32)
@@ -43,3 +45,5 @@ if __name__ == '__main__':
     block_size = (256, 256)
     # 调用划分函数
     blocks = split_image(c000, block_size)
+
+
