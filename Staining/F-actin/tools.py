@@ -81,7 +81,10 @@ def save_predicted_images(input_imgs,
     ax[axis_count].axis('off')
     ax[axis_count].set_title('Input', fontsize=font_size)
     axis_count += 1
-
+    # save input image
+    input_name = os.path.join(output_dir, '{}_input.{}'.format(output_fname, ext))
+    # cv2.imwrite(input_name, cur_im)
+    save_subfig(fig, ax[0], input_name)
     # add target image to plot
     cur_target_chan = hist_clipping(
         target_img,
