@@ -44,7 +44,7 @@ y_TU = normalize_list(data_TU[col2_title].tolist())
 # 构建画布
 plt.figure(figsize=(10, 5))
 plt.plot(x_input, y_input, label='Input', linewidth=5)
-plt.plot(x_gt, y_gt, label='Ground truth', linewidth=5)
+line_1, = plt.plot(x_gt, y_gt, label='Ground truth', linewidth=5)
 plt.plot(x_TU, y_TU, label='TransUNet', linewidth=5)
 
 # 显示图例，并设置标签字体大小
@@ -55,5 +55,5 @@ plt.xlabel('Distance (pixels)', fontsize=20)
 plt.ylabel('Gray Value', fontsize=20)
 dest = './TransUNet.png'
 plt.savefig(dest)
-
+print(line_1.get_color())
 plt.show()
