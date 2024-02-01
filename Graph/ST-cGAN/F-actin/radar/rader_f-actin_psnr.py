@@ -3,22 +3,22 @@ import numpy as np
 import pandas as pd
 
 data = pd.DataFrame({'sample':
-                         ["SSIM",
-                          "PSNR"
-                          ],
-                     'ST-cGAN':
-                         [0.8577, 29.1379],
-                     'Pix2Pix GAN':
-                         [0.7237, 21.8267],
-                     'ResUNet':
-                         [0.6867, 24.1226],
-                     'TransFuse':
-                         [0.7912, 25.9183],
-                     'TransUNet':
-                         [0.8259, 28.3907],
-                     'U-Transformer':
-                         [0.7738, 26.1490],
-                     })
+    [
+        "PSNR"
+    ],
+    'ST-cGAN':
+        [29.1379],
+    'Pix2Pix GAN':
+        [21.8267],
+    'ResUNet':
+        [24.1226],
+    'TransFuse':
+        [25.9183],
+    'TransUNet':
+        [28.3907],
+    'U-Transformer':
+        [26.1490],
+})
 
 plt.figure(figsize=(9, 8))
 # 设置雷达图的参数
@@ -58,18 +58,18 @@ for i in range(len(values)):
 
     ax.fill(angles, values[i],
             'b',
-            alpha=0.01,
+            alpha=0.1,
             )
-plt.legend(bbox_to_anchor=(1.2, 1.1), fontsize=14)
+plt.legend(bbox_to_anchor=(1.0, 1.1), fontsize=14)
 # plt.legend(loc='upper right', edgecolor='blue')
 # 设置标题
-plt.title('F-actin')
+# plt.title('F-actin')
 
 # 设置刻度标签的角度和位置
-ax.set_rgrids([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+ax.set_rgrids([20.0, 21.0, 22, 23, 24, 25, 26, 27, 28, 29, 30],
               color="grey",
               size=11,
               angle=90)
-plt.ylim(0, 1)
-plt.savefig('f-actin_radar.png')
+plt.ylim(20, 30)
+plt.savefig('f-actin_radar_psnr.png')
 plt.show()
