@@ -3,21 +3,22 @@ import numpy as np
 import pandas as pd
 
 data = pd.DataFrame({'sample':
-                         ["SSIM"
-                          ],
-                     'ST-cGAN':
-                         [0.8577],
-                     'Pix2Pix GAN':
-                         [0.7237],
-                     'ResUNet':
-                         [0.6867],
-                     'TransFuse':
-                         [0.7912],
-                     'TransUNet':
-                         [0.8259],
-                     'U-Transformer':
-                         [0.7738],
-                     })
+    [
+        "PSNR"
+    ],
+    'ST-cGAN':
+        [29.1763],
+    'Pix2Pix GAN':
+        [23.4428],
+    'ResUNet':
+        [22.8998],
+    'TransFuse':
+        [26.0847],
+    'TransUNet':
+        [27.4720],
+    'U-Transformer':
+        [26.1490],
+})
 
 plt.figure(figsize=(9, 8))
 # 设置雷达图的参数
@@ -49,7 +50,7 @@ ax.set_rlabel_position(0)
 
 for i in range(len(values)):
     ax.plot(angles, values[i],
-            'red',     # color
+            # 'y',     # color
             linewidth=2,  # line width
             linestyle='solid',
             label=data['sample'][i],
@@ -65,10 +66,10 @@ plt.legend(bbox_to_anchor=(1.0, 1.1), fontsize=14)
 # plt.title('F-actin')
 
 # 设置刻度标签的角度和位置
-ax.set_rgrids([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
+ax.set_rgrids([20.0, 21.0, 22, 23, 24, 25, 26, 27, 28, 29, 30],
               color="grey",
               size=11,
               angle=90)
-plt.ylim(0, 1)
-plt.savefig('f-actin_radar_ssim.png')
+plt.ylim(20, 30)
+plt.savefig('nuclei_radar_psnr.png')
 plt.show()

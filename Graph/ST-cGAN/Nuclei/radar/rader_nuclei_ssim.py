@@ -6,17 +6,17 @@ data = pd.DataFrame({'sample':
                          ["SSIM"
                           ],
                      'ST-cGAN':
-                         [0.8577],
+                         [0.8274],
                      'Pix2Pix GAN':
-                         [0.7237],
+                         [0.6738],
                      'ResUNet':
-                         [0.6867],
+                         [0.5402],
                      'TransFuse':
-                         [0.7912],
+                         [0.6250],
                      'TransUNet':
-                         [0.8259],
+                         [0.6481],
                      'U-Transformer':
-                         [0.7738],
+                         [0.7478],
                      })
 
 plt.figure(figsize=(9, 8))
@@ -60,7 +60,6 @@ for i in range(len(values)):
             alpha=0.1,
             )
 plt.legend(bbox_to_anchor=(1.0, 1.1), fontsize=14)
-# plt.legend(loc='upper right', edgecolor='blue')
 # 设置标题
 # plt.title('F-actin')
 
@@ -70,5 +69,5 @@ ax.set_rgrids([0.0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1],
               size=11,
               angle=90)
 plt.ylim(0, 1)
-plt.savefig('f-actin_radar_ssim.png')
+plt.savefig('nuclei_radar_ssim.png')
 plt.show()
