@@ -31,7 +31,7 @@ def make_dataframe(nbr_rows=None, df_names=DF_NAMES):
     return frames_meta
 
 
-a=np.load("record.npy", allow_pickle=True)
+a=np.load("resultsData/record.npy", allow_pickle=True)
 record=a.tolist()
 print(record)
 
@@ -42,7 +42,7 @@ for i in range(len(record)):
     meta_row["path_dir"]=record[i]
     frames_meta.loc[i]=meta_row
 
-frames_meta_filename=os.path.join("../", "frame_meta.csv")
+frames_meta_filename=os.path.join("../", "testdata/frame_meta.csv")
 
 frames_meta.to_csv(frames_meta_filename,sep=",")
 

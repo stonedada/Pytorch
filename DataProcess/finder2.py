@@ -35,6 +35,6 @@ if __name__ == '__main__':
     args = parse_args()
     list = finder(args.path)
     a = np.array(list)
-    np.save("./record.npy", a)
+    np.save("resultsData/record.npy", a)
     print(list)
     print('length:', len(list))
