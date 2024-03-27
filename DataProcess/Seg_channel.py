@@ -10,7 +10,10 @@ def run(path_dir):
         image = tifffile.imread(image_path)
         confocal = image[0]
         STED = image[1]
-        id = os.path.splitext(name)[0].split('_')[1]
+        # when split train data
+        # id = os.path.splitext(name)[0].split('_')[1]
+        # when split test data
+        id = os.path.splitext(name)[0]
         new_name = 'img_{:04d}.tif'.format(int(id))
         GT_Path = os.path.join(GT_dir, new_name)
         low_Path = os.path.join(low_dir, new_name)
@@ -19,8 +22,8 @@ def run(path_dir):
 
 
 if __name__ == '__main__':
-    img_dir = r'D:\Data\backups\TAGAN\AxonaRingsDataset\train'
-    sav_dir = r'D:\Data\backups\TAGAN\NewAxonal\train'
+    img_dir = r'D:\Data\backups\TAGAN\AxonaRingsDataset\test'
+    sav_dir = r'D:\Data\backups\TAGAN\NewAxonal\test'
     GT_dir = os.path.join(sav_dir, 'GT')
     low_dir = os.path.join(sav_dir, 'low')
     if not os.path.exists(GT_dir):
