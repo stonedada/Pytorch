@@ -26,18 +26,6 @@ psnr_UTransform_f = UTransform_f['psnr']
 psnr_pix2pixGAN_f = pix2pixGAN_f['PSNR']
 psnr_ST_cGAN_f = ST_cGAN_f['PSNR']
 
-# nuclei Data
-# ResUNet_n = pd.read_csv('../../data/nuclei/ResUNet.csv')
-# TransFuse_n = pd.read_csv('../../data/nuclei/TransFuse.csv')
-# TransUNet_n = pd.read_csv('../../data/nuclei/TransUNet.csv')
-# UTransform_n = pd.read_csv('../../data/nuclei/UTransformer.csv')
-# STNet_n = pd.read_csv('../../data/nuclei/STNet.csv')
-#
-# ssim_ResUNet_n = ResUNet_n['SSIM']
-# ssim_TransFuse_n = TransFuse_n['SSIM']
-# ssim_TransUNet_n = TransUNet_n['SSIM']
-# ssim_UTransform_n = UTransform_n['SSIM']
-# ssim_STNet_n = STNet_n['SSIM']
 # Define my data
 ssim_factin = [ssim_ResUNet_f, ssim_TransFuse_f, ssim_TransUNet_f, ssim_UTransform_f, ssim_pix2pixGAN_f, ssim_ST_cGAN_f]
 psnr_factin = [psnr_ResUNet_f, psnr_TransFuse_f, psnr_TransUNet_f, psnr_UTransform_f, psnr_pix2pixGAN_f, psnr_ST_cGAN_f]
