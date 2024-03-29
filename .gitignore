@@ -1,5 +1,3 @@
-/dataset/
-/logs/
 /Crop/input
 /Crop/image
 /Crop/label
@@ -64,4 +62,5 @@
 /Crop_nuclei/pred/
 /Crop/Crop_2/
 /Matplot/Plot Values/F-actin/data/
+/Graph/Violinplot/MA-GAN/data/
 /Graph/Violinplot/MA-GAN/data/
